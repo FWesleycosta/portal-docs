@@ -1,0 +1,42 @@
+# Copie para .github/workflows/portal.yml no repositório que vai publicar a documentação.
+# Antes, habilite o GitHub Pages com origem "GitHub Actions" e fixe as actions por SHA com scripts/fixar-actions.sh.
+name: portal
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "docs/**"
+      - "modules/*/README.md"
+      - ".github/workflows/portal.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@LATEST
+        with:
+          persist-credentials: false
+      - uses: FWesleycosta/portal-docs@LATEST
+        with:
+          incluir: |
+            modules/*/README.md
+      - uses: actions/upload-pages-artifact@LATEST
+        with:
+          path: _portal
+      - id: deploy
+        uses: actions/deploy-pages@LATEST
