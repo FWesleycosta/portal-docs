@@ -2,7 +2,7 @@ name: Portal de documentação
 description: Gera o portal de documentação em uma única página HTML a partir do Markdown do repositório (README.md e docs/).
 inputs:
   incluir:
-    description: Padrões glob extras de Markdown, um por linha (ex.: modules/*/README.md).
+    description: "Padrões glob extras de Markdown, um por linha (ex.: modules/*/README.md)."
     required: false
     default: ""
   saida:
