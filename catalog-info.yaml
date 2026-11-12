@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: portal-docs
+  title: Portal Docs
+  description: "GitHub Action que transforma o Markdown de um repositório em um portal de documentação com busca e diagramas, publicado no GitHub Pages."
+  tags:
+    - documentation
+    - github-actions
+    - github-pages
+    - mermaid
+    - python
+  annotations:
+    github.com/project-slug: FWesleycosta/portal-docs
+spec:
+  type: library
+  lifecycle: production
+  owner: fwesleycosta
+  system: portal
